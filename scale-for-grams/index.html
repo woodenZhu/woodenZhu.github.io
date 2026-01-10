@@ -1,59 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scale for Grams: AI Estimator - Official Site</title>
-    <meta name="description" content="Turn your camera into a smart estimator. AI-powered weight estimation for iOS.">
-    <link rel="icon" type="image/png" href="images/icon.png">
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Scale for Grams: AI Estimator - Official Site</title>
+        <meta name="description"
+            content="Turn your camera into a smart estimator. AI-powered weight estimation for iOS.">
+        <link rel="icon" type="image/png" href="images/icon.png">
 
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        /* 纯 CSS 绘制的 iPhone 外框 */
-        .iphone-mockup {
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            border: 12px solid #1f2937;
-            border-radius: 3rem;
-            overflow: hidden;
-            position: relative;
-            background-color: #f3f4f6;
-        }
-        /* 顶部刘海 */
-        .iphone-notch {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50%;
-            height: 25px;
-            background-color: #1f2937;
-            border-bottom-left-radius: 12px;
-            border-bottom-right-radius: 12px;
-            z-index: 20;
-        }
-    </style>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // 1. 检测是否为 Android 设备
-            const isAndroid = true;
-            // const isAndroid = /Android/i.test(navigator.userAgent);
+        <style>
+            body {
+                font-family: 'Inter', sans-serif;
+            }
 
-            // 2. 获取页面元素
-            const downloadSection = document.getElementById('download');
-            // 获取 id="download" 紧邻的下一个 p 标签（即 "Requires iOS..." 那一行）
-            const requirementText = document.querySelector('#download + p');
+            /* 纯 CSS 绘制的 iPhone 外框 */
+            .iphone-mockup {
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+                border: 12px solid #1f2937;
+                border-radius: 3rem;
+                overflow: hidden;
+                position: relative;
+                background-color: #f3f4f6;
+            }
 
-            if (isAndroid) {
-                // --- A. 替换下载按钮为 Google Play 样式 (使用指定图片) ---
-                if (downloadSection) {
-                    // 请记得将 href="#" 替换为你实际的 Google Play 链接
-                    downloadSection.innerHTML = `
+            /* 顶部刘海 */
+            .iphone-notch {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 50%;
+                height: 25px;
+                background-color: #1f2937;
+                border-bottom-left-radius: 12px;
+                border-bottom-right-radius: 12px;
+                z-index: 20;
+            }
+        </style>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // 1. 检测是否为 Android 设备
+                const isAndroid = /Android/i.test(navigator.userAgent);
+
+                // 2. 获取页面元素
+                const downloadSection = document.getElementById('download');
+                // 获取 id="download" 紧邻的下一个 p 标签（即 "Requires iOS..." 那一行）
+                const requirementText = document.querySelector('#download + p');
+
+                if (isAndroid) {
+                    // --- A. 替换下载按钮为 Google Play 样式 (使用指定图片) ---
+                    if (downloadSection) {
+                        // 请记得将 href="#" 替换为你实际的 Google Play 链接
+                        downloadSection.innerHTML = `
                         <a href="#" class="flex items-center justify-center px-6 py-3 text-white bg-black rounded-xl hover:bg-gray-800 transition transform hover:-translate-y-1 shadow-xl">
-                            <img src="https://www.gstatic.com/play-apps-publisher/play_console_favicon.png"
+                            <img src="images/icon.png""
                                  class="w-7 h-7 mr-3"
                                  alt="Google Play Logo">
                             <div class="text-left">
@@ -62,249 +67,307 @@
                             </div>
                         </a>
                     `;
-                }
+                    }
 
-                // --- B. 替换版本要求文字 ---
-                if (requirementText) {
-                    requirementText.textContent = "Requires Android 8.0 or later.";
-                }
-            }
-        });
-
-        // 现有的 Modal 弹窗逻辑保持不变
-        function toggleModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal.classList.contains('hidden')) {
-                modal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
-            } else {
-                modal.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        document.querySelectorAll('[id$="-modal"]').forEach(modal => {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    toggleModal(modal.id);
+                    // --- B. 替换版本要求文字 ---
+                    if (requirementText) {
+                        requirementText.textContent = "Requires Android 8.0 or later.";
+                    }
                 }
             });
-        });
-    </script>
-</head>
-<body class="bg-gray-50 text-gray-900 scroll-smooth">
 
-    <nav class="bg-white/80 border-b border-gray-100 sticky top-0 z-40 backdrop-blur-md">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex items-center">
-                    <img src="images/icon.png" alt="Scale for Grams Logo" class="h-8 w-8 mr-3 shadow-md rounded-md">
-                    <span class="font-bold text-xl tracking-tight text-gray-900">Scale for Grams</span>
-                </div>
-                <div class="hidden md:flex space-x-8 text-sm font-medium">
-                    <!-- <a href="#features" class="text-gray-500 hover:text-blue-600 transition">Features</a>
-                    <a href="#support" class="text-gray-500 hover:text-blue-600 transition">Support</a> -->
-                    <a href="#download" class="text-white bg-blue-600 px-5 py-2 rounded-full hover:bg-blue-700 transition shadow-lg shadow-blue-500/30">Download</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+            // 现有的 Modal 弹窗逻辑保持不变
+            function toggleModal(modalId) {
+                const modal = document.getElementById(modalId);
+                if (modal.classList.contains('hidden')) {
+                    modal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                }
+            }
 
-    <section class="pt-20 pb-32 overflow-hidden">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
-            <div class="md:w-1/2 text-center md:text-left z-10 mb-16 md:mb-0">
-                <div class="inline-block px-3 py-1 mb-6 text-xs font-semibold tracking-wider text-blue-600 uppercase bg-blue-50 rounded-full">
-                    New Release
-                </div>
-                <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-6 text-gray-900">
-                    Unlock <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">AI Vision</span>
-                </h1>
-                <p class="text-lg md:text-xl text-gray-500 mb-8 leading-relaxed max-w-lg mx-auto md:mx-0">
-                    Turn your camera into a smart estimator. Get deep density insights and object analysis instantly.
-                </p>
+            document.querySelectorAll('[id$="-modal"]').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        toggleModal(modal.id);
+                    }
+                });
+            });
+        </script>
+    </head>
 
-                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start" id="download">
-                    <a href="#" class="flex items-center justify-center px-6 py-3 text-white bg-black rounded-xl hover:bg-gray-800 transition transform hover:-translate-y-1 shadow-xl">
-                        <svg class="w-7 h-7 mr-3" viewBox="0 0 384 512" fill="currentColor">
-                            <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 46.9 126.7 98 126.7 32.3 0 49.4-23.7 74.3-23.7 26.9 0 43.1 23.7 76.3 23.7 29.8 0 52.6-26.9 64.9-50.5 4.9-9.9 8.6-19.7 11.2-28.7-36.7-16.4-61.1-53.5-63.4-103.6zm-104-180c35.5-44 57.8-88.9 51.4-129.5-35.1 2-79.6 22.8-106.5 56-29.4 33.6-50.6 86.3-43 129.6 37.1 2.9 76.5-23.9 98.1-56.1z"/>
-                        </svg>
-                        <div class="text-left">
-                            <div class="text-xs text-gray-400">Download on the</div>
-                            <div class="text-xl font-bold font-sans -mt-1 leading-none">App Store</div>
-                        </div>
-                    </a>
-                </div>
-                <p class="mt-4 text-xs text-gray-400">Requires iOS 15.0 or later.</p>
-            </div>
+    <body class="bg-gray-50 text-gray-900 scroll-smooth">
 
-            <div class="md:w-1/2 flex justify-center relative">
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-blue-200 to-purple-200 rounded-full filter blur-3xl opacity-40"></div>
-
-                <div class="iphone-mockup w-[280px] h-[580px] z-10 flex flex-col bg-white">
-                    <div class="iphone-notch"></div>
-                    <div class="flex-1 flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
-                        <img src="images/icon.png" alt="Scale for Grams Logo" class="w-20 h-20 mb-6 shadow-md rounded-md">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">AI Estimator</h3>
-                        <p class="text-sm text-gray-500 mb-8">Point, scan, and estimate.</p>
-
-                        <div class="w-full bg-gray-50 p-4 rounded-xl border border-gray-100 mb-3">
-                            <div class="flex justify-between items-center mb-2">
-                                <div class="h-2 bg-gray-200 rounded w-1/3"></div>
-                                <div class="h-2 bg-blue-200 rounded w-1/6"></div>
-                            </div>
-                            <div class="h-8 bg-gray-200 rounded w-full"></div>
-                        </div>
-                        <div class="w-full bg-blue-600 h-10 rounded-lg mt-2 opacity-90"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="features" class="py-24 bg-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why Scale for Grams?</h2>
-                <p class="text-lg text-gray-500">Professional grade tools in your pocket.</p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-8 bg-gray-50 rounded-2xl border border-gray-100 hover:border-blue-100 hover:shadow-lg transition duration-300">
-                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-6">⚡️</div>
-                    <h3 class="text-xl font-bold mb-3">Unlimited AI Scans</h3>
-                    <p class="text-gray-500 leading-relaxed">No limits. Scan as many objects as you need with our advanced estimator engine.</p>
-                </div>
-                <div class="p-8 bg-gray-50 rounded-2xl border border-gray-100 hover:border-purple-100 hover:shadow-lg transition duration-300">
-                    <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-2xl mb-6">🧠</div>
-                    <h3 class="text-xl font-bold mb-3">Pro Intelligence</h3>
-                    <p class="text-gray-500 leading-relaxed">Smarter object recognition powered by the latest Gemini AI models.</p>
-                </div>
-                <div class="p-8 bg-gray-50 rounded-2xl border border-gray-100 hover:border-green-100 hover:shadow-lg transition duration-300">
-                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-xl flex items-center justify-center text-2xl mb-6">💎</div>
-                    <h3 class="text-xl font-bold mb-3">Ad-Free Experience</h3>
-                    <p class="text-gray-500 leading-relaxed">Focus on your measurements. No interruptions, no banners, pure utility.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-gray-900 text-white py-16" id="support">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-12 border-b border-gray-800 pb-12 mb-8">
-                <div class="col-span-1 md:col-span-2">
-                    <div class="flex items-center mb-4">
+        <nav class="bg-white/80 border-b border-gray-100 sticky top-0 z-40 backdrop-blur-md">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16 items-center">
+                    <div class="flex items-center">
                         <img src="images/icon.png" alt="Scale for Grams Logo" class="h-8 w-8 mr-3 shadow-md rounded-md">
-                        <span class="font-bold text-xl tracking-tight">Scale for Grams</span>
+                        <span class="font-bold text-xl tracking-tight text-gray-900">Scale for Grams</span>
                     </div>
-                    <p class="text-gray-400 text-sm max-w-xs leading-relaxed">
-                        The ultimate AI-powered weight estimation tool for iOS/Android. Combining computer vision with advanced density analysis.
+                    <div class="hidden md:flex space-x-8 text-sm font-medium">
+                        <!-- <a href="#features" class="text-gray-500 hover:text-blue-600 transition">Features</a>
+                    <a href="#support" class="text-gray-500 hover:text-blue-600 transition">Support</a> -->
+                        <a href="#download"
+                            class="text-white bg-blue-600 px-5 py-2 rounded-full hover:bg-blue-700 transition shadow-lg shadow-blue-500/30">Download</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <section class="pt-20 pb-32 overflow-hidden">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 text-center md:text-left z-10 mb-16 md:mb-0">
+                    <div
+                        class="inline-block px-3 py-1 mb-6 text-xs font-semibold tracking-wider text-blue-600 uppercase bg-blue-50 rounded-full">
+                        New Release
+                    </div>
+                    <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-6 text-gray-900">
+                        Unlock <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">AI
+                            Vision</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-500 mb-8 leading-relaxed max-w-lg mx-auto md:mx-0">
+                        Turn your camera into a smart estimator. Get deep density insights and object analysis
+                        instantly.
                     </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start" id="download">
+                        <a href="#"
+                            class="flex items-center justify-center px-6 py-3 text-white bg-black rounded-xl hover:bg-gray-800 transition transform hover:-translate-y-1 shadow-xl">
+                            <svg class="w-7 h-7 mr-3" viewBox="0 0 384 512" fill="currentColor">
+                                <path
+                                    d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 46.9 126.7 98 126.7 32.3 0 49.4-23.7 74.3-23.7 26.9 0 43.1 23.7 76.3 23.7 29.8 0 52.6-26.9 64.9-50.5 4.9-9.9 8.6-19.7 11.2-28.7-36.7-16.4-61.1-53.5-63.4-103.6zm-104-180c35.5-44 57.8-88.9 51.4-129.5-35.1 2-79.6 22.8-106.5 56-29.4 33.6-50.6 86.3-43 129.6 37.1 2.9 76.5-23.9 98.1-56.1z" />
+                            </svg>
+                            <div class="text-left">
+                                <div class="text-xs text-gray-400">Download on the</div>
+                                <div class="text-xl font-bold font-sans -mt-1 leading-none">App Store</div>
+                            </div>
+                        </a>
+                    </div>
+                    <p class="mt-4 text-xs text-gray-400">Requires iOS 15.0 or later.</p>
                 </div>
-                <div>
-                    <h4 class="font-bold mb-6 text-gray-100">Support</h4>
-                    <ul class="space-y-4 text-sm text-gray-400">
-                        <li><a href="mailto:yongzhuguo28@gmail.com" class="hover:text-blue-400 transition flex items-center"><span class="mr-2">✉️</span> Contact Us</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-6 text-gray-100">Legal</h4>
-                    <ul class="space-y-4 text-sm text-gray-400">
-                        <li><a href="privacy.html" class="hover:text-blue-400 transition text-left">Privacy Policy</a></li>
-                        <li><a href="terms.html" class="hover:text-blue-400 transition text-left">Terms of Use</a></li>
-                    </ul>
+
+                <div class="md:w-1/2 flex justify-center relative">
+                    <div
+                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-blue-200 to-purple-200 rounded-full filter blur-3xl opacity-40">
+                    </div>
+
+                    <div class="iphone-mockup w-[280px] h-[580px] z-10 flex flex-col bg-white">
+                        <div class="iphone-notch"></div>
+                        <div
+                            class="flex-1 flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
+                            <img src="images/icon.png" alt="Scale for Grams Logo"
+                                class="w-20 h-20 mb-6 shadow-md rounded-md">
+                            <h3 class="text-xl font-bold text-gray-800 mb-2">AI Estimator</h3>
+                            <p class="text-sm text-gray-500 mb-8">Point, scan, and estimate.</p>
+
+                            <div class="w-full bg-gray-50 p-4 rounded-xl border border-gray-100 mb-3">
+                                <div class="flex justify-between items-center mb-2">
+                                    <div class="h-2 bg-gray-200 rounded w-1/3"></div>
+                                    <div class="h-2 bg-blue-200 rounded w-1/6"></div>
+                                </div>
+                                <div class="h-8 bg-gray-200 rounded w-full"></div>
+                            </div>
+                            <div class="w-full bg-blue-600 h-10 rounded-lg mt-2 opacity-90"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="text-center text-gray-600 text-xs">
-                &copy; 2025 Scale for Grams. All rights reserved.
-            </div>
-        </div>
-    </footer>
+        </section>
 
-    <div id="privacy-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300">
-        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-2xl relative animate-fade-in-up">
-            <button onclick="toggleModal('privacy-modal')" class="absolute top-4 right-4 p-2 bg-gray-100 rounded-full text-gray-500 hover:bg-gray-200 hover:text-black transition">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-
-            <div class="p-8">
-                <h2 class="text-2xl font-bold mb-6 text-gray-900">Privacy Policy</h2>
-                <div class="prose prose-sm text-gray-600">
-                    <p class="mb-2"><strong>Last updated: January 1, 2024</strong></p>
-                    <p class="mb-4">Scale for Grams ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how your personal information is collected, used, and disclosed by Scale for Grams.</p>
-
-                    <h3 class="font-bold text-gray-900 mt-6 mb-2">1. Information Collection</h3>
-                    <p>We do not store your images on our servers. All image processing for weight estimation is performed using third-party APIs (such as Gemini) securely. The raw visual data is processed in real-time and is not permanently stored by us.</p>
-
-                    <h3 class="font-bold text-gray-900 mt-6 mb-2">2. Usage of Data</h3>
-                    <p>Any data collected is used solely for the purpose of providing the weight estimation service and improving app functionality.</p>
-
-                    <h3 class="font-bold text-gray-900 mt-6 mb-2">3. Contact Us</h3>
-                    <p>If you have any questions about this Privacy Policy, please contact us at <span class="text-blue-600">support@yourdomain.com</span>.</p>
+        <section id="features" class="py-24 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why Scale for Grams?</h2>
+                    <p class="text-lg text-gray-500">Professional grade tools in your pocket.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div
+                        class="p-8 bg-gray-50 rounded-2xl border border-gray-100 hover:border-blue-100 hover:shadow-lg transition duration-300">
+                        <div
+                            class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-6">
+                            ⚡️</div>
+                        <h3 class="text-xl font-bold mb-3">Unlimited AI Scans</h3>
+                        <p class="text-gray-500 leading-relaxed">No limits. Scan as many objects as you need with our
+                            advanced estimator engine.</p>
+                    </div>
+                    <div
+                        class="p-8 bg-gray-50 rounded-2xl border border-gray-100 hover:border-purple-100 hover:shadow-lg transition duration-300">
+                        <div
+                            class="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-2xl mb-6">
+                            🧠</div>
+                        <h3 class="text-xl font-bold mb-3">Pro Intelligence</h3>
+                        <p class="text-gray-500 leading-relaxed">Smarter object recognition powered by the latest Gemini
+                            AI models.</p>
+                    </div>
+                    <div
+                        class="p-8 bg-gray-50 rounded-2xl border border-gray-100 hover:border-green-100 hover:shadow-lg transition duration-300">
+                        <div
+                            class="w-12 h-12 bg-green-100 text-green-600 rounded-xl flex items-center justify-center text-2xl mb-6">
+                            💎</div>
+                        <h3 class="text-xl font-bold mb-3">Ad-Free Experience</h3>
+                        <p class="text-gray-500 leading-relaxed">Focus on your measurements. No interruptions, no
+                            banners, pure utility.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <div id="terms-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300">
-        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-2xl relative animate-fade-in-up">
-            <button onclick="toggleModal('terms-modal')" class="absolute top-4 right-4 p-2 bg-gray-100 rounded-full text-gray-500 hover:bg-gray-200 hover:text-black transition">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-
-            <div class="p-8">
-                <h2 class="text-2xl font-bold mb-6 text-gray-900">Terms of Use</h2>
-                <div class="prose prose-sm text-gray-600 space-y-4">
-                    <p><strong>Last updated: January 1, 2024</strong></p>
-                    <p>By downloading or using the app, these terms will automatically apply to you.</p>
-
-                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
-                        <h3 class="font-bold text-gray-900 mb-2">1. Standard EULA</h3>
-                        <p>
-                            This application is licensed to you under the Apple Standard End User License Agreement. By installing this app, you agree to the terms listed at: <br>
-                            <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" class="text-blue-600 hover:underline break-all">https://www.apple.com/legal/internet-services/itunes/dev/stdeula/</a>
+        <footer class="bg-gray-900 text-white py-16" id="support">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-4 gap-12 border-b border-gray-800 pb-12 mb-8">
+                    <div class="col-span-1 md:col-span-2">
+                        <div class="flex items-center mb-4">
+                            <img src="images/icon.png" alt="Scale for Grams Logo"
+                                class="h-8 w-8 mr-3 shadow-md rounded-md">
+                            <span class="font-bold text-xl tracking-tight">Scale for Grams</span>
+                        </div>
+                        <p class="text-gray-400 text-sm max-w-xs leading-relaxed">
+                            The ultimate AI-powered weight estimation tool for iOS/Android. Combining computer vision
+                            with advanced density analysis.
                         </p>
                     </div>
+                    <div>
+                        <h4 class="font-bold mb-6 text-gray-100">Support</h4>
+                        <ul class="space-y-4 text-sm text-gray-400">
+                            <li><a href="mailto:yongzhuguo28@gmail.com"
+                                    class="hover:text-blue-400 transition flex items-center"><span
+                                        class="mr-2">✉️</span> Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-6 text-gray-100">Legal</h4>
+                        <ul class="space-y-4 text-sm text-gray-400">
+                            <li><a href="privacy.html" class="hover:text-blue-400 transition text-left">Privacy
+                                    Policy</a></li>
+                            <li><a href="terms.html" class="hover:text-blue-400 transition text-left">Terms of Use</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="text-center text-gray-600 text-xs">
+                    &copy; 2025 Scale for Grams. All rights reserved.
+                </div>
+            </div>
+        </footer>
 
-                    <h3 class="font-bold text-gray-900 mt-4">2. Subscriptions & Payments</h3>
-                    <p>
-                        <strong>Weekly Subscription with Trial:</strong> Scale for Grams offers a weekly subscription that may come with a 3-day free trial.
-                        Payment will be charged to your Apple ID account at the confirmation of purchase.
-                        The subscription automatically renews unless it is canceled at least 24 hours before the end of the current period.
-                        Your account will be charged for renewal within 24 hours prior to the end of the current period.
-                        You can manage and cancel your subscriptions by going to your account settings on the App Store after purchase.
-                    </p>
+        <div id="privacy-modal"
+            class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300">
+            <div
+                class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-2xl relative animate-fade-in-up">
+                <button onclick="toggleModal('privacy-modal')"
+                    class="absolute top-4 right-4 p-2 bg-gray-100 rounded-full text-gray-500 hover:bg-gray-200 hover:text-black transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
 
-                    <h3 class="font-bold text-gray-900 mt-4">3. Disclaimer</h3>
-                    <p class="text-red-500 font-medium">
-                        For Reference Only: This app uses AI to estimate weight based on visual data. It is NOT a precision instrument and should not be used for medical, commercial, or trade purposes where exact measurements are required. We do not guarantee 100% accuracy of the results.
-                    </p>
+                <div class="p-8">
+                    <h2 class="text-2xl font-bold mb-6 text-gray-900">Privacy Policy</h2>
+                    <div class="prose prose-sm text-gray-600">
+                        <p class="mb-2"><strong>Last updated: January 1, 2024</strong></p>
+                        <p class="mb-4">Scale for Grams ("we", "our", or "us") is committed to protecting your privacy.
+                            This Privacy Policy explains how your personal information is collected, used, and disclosed
+                            by Scale for Grams.</p>
 
-                    <h3 class="font-bold text-gray-900 mt-4">4. Contact</h3>
-                    <p>If you have any questions regarding these terms, please contact us via email.</p>
+                        <h3 class="font-bold text-gray-900 mt-6 mb-2">1. Information Collection</h3>
+                        <p>We do not store your images on our servers. All image processing for weight estimation is
+                            performed using third-party APIs (such as Gemini) securely. The raw visual data is processed
+                            in real-time and is not permanently stored by us.</p>
+
+                        <h3 class="font-bold text-gray-900 mt-6 mb-2">2. Usage of Data</h3>
+                        <p>Any data collected is used solely for the purpose of providing the weight estimation service
+                            and improving app functionality.</p>
+
+                        <h3 class="font-bold text-gray-900 mt-6 mb-2">3. Contact Us</h3>
+                        <p>If you have any questions about this Privacy Policy, please contact us at <span
+                                class="text-blue-600">support@yourdomain.com</span>.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script>
-        function toggleModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal.classList.contains('hidden')) {
-                modal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden'; // 禁止背景滚动
-            } else {
-                modal.classList.add('hidden');
-                document.body.style.overflow = 'auto'; // 恢复背景滚动
-            }
-        }
+        <div id="terms-modal"
+            class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300">
+            <div
+                class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-2xl relative animate-fade-in-up">
+                <button onclick="toggleModal('terms-modal')"
+                    class="absolute top-4 right-4 p-2 bg-gray-100 rounded-full text-gray-500 hover:bg-gray-200 hover:text-black transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
 
-        // 点击背景也可以关闭
-        document.querySelectorAll('[id$="-modal"]').forEach(modal => {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    toggleModal(modal.id);
+                <div class="p-8">
+                    <h2 class="text-2xl font-bold mb-6 text-gray-900">Terms of Use</h2>
+                    <div class="prose prose-sm text-gray-600 space-y-4">
+                        <p><strong>Last updated: January 1, 2024</strong></p>
+                        <p>By downloading or using the app, these terms will automatically apply to you.</p>
+
+                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                            <h3 class="font-bold text-gray-900 mb-2">1. Standard EULA</h3>
+                            <p>
+                                This application is licensed to you under the Apple Standard End User License Agreement.
+                                By installing this app, you agree to the terms listed at: <br>
+                                <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/"
+                                    target="_blank"
+                                    class="text-blue-600 hover:underline break-all">https://www.apple.com/legal/internet-services/itunes/dev/stdeula/</a>
+                            </p>
+                        </div>
+
+                        <h3 class="font-bold text-gray-900 mt-4">2. Subscriptions & Payments</h3>
+                        <p>
+                            <strong>Weekly Subscription with Trial:</strong> Scale for Grams offers a weekly
+                            subscription that may come with a 3-day free trial.
+                            Payment will be charged to your Apple ID account at the confirmation of purchase.
+                            The subscription automatically renews unless it is canceled at least 24 hours before the end
+                            of the current period.
+                            Your account will be charged for renewal within 24 hours prior to the end of the current
+                            period.
+                            You can manage and cancel your subscriptions by going to your account settings on the App
+                            Store after purchase.
+                        </p>
+
+                        <h3 class="font-bold text-gray-900 mt-4">3. Disclaimer</h3>
+                        <p class="text-red-500 font-medium">
+                            For Reference Only: This app uses AI to estimate weight based on visual data. It is NOT a
+                            precision instrument and should not be used for medical, commercial, or trade purposes where
+                            exact measurements are required. We do not guarantee 100% accuracy of the results.
+                        </p>
+
+                        <h3 class="font-bold text-gray-900 mt-4">4. Contact</h3>
+                        <p>If you have any questions regarding these terms, please contact us via email.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function toggleModal(modalId) {
+                const modal = document.getElementById(modalId);
+                if (modal.classList.contains('hidden')) {
+                    modal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden'; // 禁止背景滚动
+                } else {
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = 'auto'; // 恢复背景滚动
                 }
+            }
+
+            // 点击背景也可以关闭
+            document.querySelectorAll('[id$="-modal"]').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        toggleModal(modal.id);
+                    }
+                });
             });
-        });
-    </script>
-</body>
+        </script>
+    </body>
+
 </html>
